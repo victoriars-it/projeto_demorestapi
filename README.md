@@ -10,6 +10,7 @@ API RESTful para **gerenciar tarefas**
 ## Tecnologias
 - Java 17 • Spring Boot 3 • Spring Web • Spring Data JPA • Jakarta Validation  
 - MySQL 8
+- Postman
 
 ---
 
