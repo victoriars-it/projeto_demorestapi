@@ -1,0 +1,137 @@
+{
+	"info": {
+		"_postman_id": "8da01fa9-d24a-42e2-a778-3af0821e52f4",
+		"name": "PROJETO_UNINTER",
+		"description": "# API de Tarefas (UNINTER)\n\n**Aluno:** Victoria Resende — **RU 4612869**  \n**Disciplina:** Desenvolvimento Web – Back End\n\n**Endpoints:**\n\n- POST `/api/tarefas`\n    \n- GET `/api/tarefas`\n    \n- PUT `/api/tarefas/{id}`\n    \n- DELETE `/api/tarefas/{id}`",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "48006013",
+		"_collection_link": "https://victoriars-it-5524831.postman.co/workspace/NEXT-INNOVATION's-Workspace~459c4824-3eec-4773-81e8-b7aea5be2ca2/collection/48006013-8da01fa9-d24a-42e2-a778-3af0821e52f4?action=share&source=collection_link&creator=48006013"
+	},
+	"item": [
+		{
+			"name": "cadastrar_tarefa",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"nome\": \"Refinamento de Backlog\",\r\n  \"dataEntrega\": \"2025-10-31\",\r\n  \"responsavel\": \"Jucelia\"\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/tarefas",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"tarefas"
+					]
+				},
+				"description": "## Endpoint: Criar Tarefa\n\nEste endpoint permite que os usuários criem uma nova tarefa no sistema enviando uma requisição POST.\n\n### Request\n\n- **URL**: `http://localhost:8080/api/tarefas`\n    \n- **Method**: POST\n    \n- **Content-Type**: application/json\n    \n\n### Request Body Parameters\n\nO corpo da requisição deve ser um objeto JSON contendo os seguintes parâmetros:\n\n- **nome** (string): O nome da tarefa. Deve ser um título descritivo para a tarefa.\n    \n- **dataEntrega** (string): A data de entrega da tarefa no formato: `AAAA-MM-DD`.\n    \n- **responsavel** (string): O nome ou identificador da pessoa responsável pela tarefa.\n    \n\n**Exemplo do corpo da requisição (Request Body):**\n\n``` json\n{\n  \"nome\": \"Tarefa de Entrega do Trabalho\",\n  \"dataEntrega\": \"2025-09-01\",\n  \"responsavel\": \"Victoria — RU 4612869\"\n}\n\n ```\n\n### Resposta\n\nApós a criação bem-sucedida de uma tarefa, a API retornará uma resposta com os seguintes detalhes\n\n- **Status Code**: 201 Created - criado com sucesso\n    \n- **Content-Type**: application/json\n    \n\n### Corpo da Resposta\n\nA resposta conterá um objeto JSON com os seguintes campos:\n\n- **id** (integer): identificador único da tarefa recém-criada.\n    \n- **nome** (string): nome da tarefa.\n    \n- **dataEntrega** (string): data de entrega da tarefa\n    \n- **responsavel** (string): nome ou identificador da pessoa responsável pela tarefa.\n    \n\n**Examplo de Resposta:**\n\n``` json\n{\n  \"id\": 1,\n  \"nome\": \"Tarefa de Entrega do Trabalho\",\n  \"dataEntrega\": \"2025-09-01\",\n  \"responsavel\": \"Victoria — RU 4612869\"\n}\n\n ```\n\n### Notas\n\n- Garanta que todos os campos obrigatórios estejam incluídos no corpo da requisição para evitar erros\n    \n- O campo de `id` na resposta será preenchido com o identificador único atribuído à tarefa após a criação bem-sucedida."
+			},
+			"response": []
+		},
+		{
+			"name": "atualizar_tarefa",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"nome\": \"Desenvolvimento da API (atualizada)\",\r\n  \"dataEntrega\": \"2025-12-20\",\r\n  \"responsavel\": \"Victoria Resende - RU 4612869 (atualizado)\"\r\n}\r\n\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/tarefas/4",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"tarefas",
+						"4"
+					]
+				},
+				"description": "## Endpoint: Atualizar Tarefa\n\nEste endpoint permite atualizar uma tarefa existente no sistema. Enviando uma requisição **PUT** para a URL indicada, você pode modificar os detalhes de uma tarefa identificada pelo seu ID único.\n\n### Request\n\n- **Method**: PUT\n    \n- **URL**: `http://localhost:8080/api/tarefas/{id}` (substitua o `{id}` pelo ID real da tarefa)\n    \n\n#### Request Body\n\nO corpo da requisição deve estar em formato **JSON** e incluir os seguintes parâmetros:\n\n- **nome** (string): nome atualizado da tarefa.\n    \n- **dataEntrega** (string): nova data de entrega da tarefa, no formato `AAAA-MM-DD`.\n    \n- **responsavel** (string): nome da pessoa responsável pela tarefa\n    \n\n**Examplo de Request Body**:\n\n``` json\n{\n  \"nome\": \"Tarefa Atualizada\",\n  \"dataEntrega\": \"2025-09-15\",\n  \"responsavel\": \"Victoria Resende - RU 4612869 ...\"\n}\n\n ```\n\n### Headers\n\nCertifique-se de incluir os seguintes cabeçalhos na requisição:\n\n- **Content-Type**: `application/json`\n    \n\n### Resposta\n\nEm caso de atualização bem-sucedida, a API retornará **status** `200 OK` junto com um objeto JSON contendo os seguintes campos:\n\n- **id** (integer): identificador único da tarefa atualizada.\n    \n- **nome** (string): nome atualizado da tarefa.\n    \n- **dataEntrega** (string): data de entrga atualizada da tarefa.\n    \n- **responsavel** (string): nome da pessoa responsável pela tarefa.\n    \n\n**Exemplo de Resposta**:\n\n``` json\n{\n  \"id\": 0,\n  \"nome\": \"\",\n  \"dataEntrega\": \"\",\n  \"responsavel\": \"\"\n}\n\n ```\n\n### Notas\n\n- tGaranta que o ID da tarefa na URL corresponda a uma tarefa existente no sistema.\n    \n- A resposta refletirá os detalhes atualizados da tarefa após a execução bem-sucedida da requisição."
+			},
+			"response": []
+		},
+		{
+			"name": "deletar_tarefa",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/tarefas/4",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"tarefas",
+						"4"
+					]
+				},
+				"description": "# Endpoint: Deletar Tarefa\n\nEste endpoint é usado para excluir do sistema uma tarefa específica identificada por seu ID único.\n\n## Request\n\n### HTTP Method\n\n`DELETE`\n\n### URL\n\n[<code>http://localhost:8080/api/tarefas/{id}</code>](http://localhost:8080/api/tarefas/{id})\n\n(substitua {id} pelo ID que deseja excluir)\n\n### Path Parameters\n\n- `id` (integer): StartFragment identificador único da tarefa a ser excluída. Neste exemplo, o ID é `2`.\n    \n\n## Resposta\n\n### Status Code\n\n- `204 No Content`: indica que a requisição foi bem-sucedida e a tarefa foi excluída. Não há conteúdo no corpo da resposta\n    \n\n## Notas\n\n- Garanta que o ID de tarefa fornecido na URL corresponda a uma tarefa existente no sistema.\n    \n- A ausência de corpo na resposta é padrão para operações **DELETE** bem-sucedidas."
+			},
+			"response": []
+		},
+		{
+			"name": "listar_tarefas",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/tarefas",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"tarefas"
+					]
+				},
+				"description": "## Endpoint: Listar Tarefas\n\n### Request\n\n- **Method**: GET\n    \n- **URL**: `http://localhost:8080/api/tarefas`\n    \n\n### Descrição\n\ntEste endpoint retorna uma lista de tarefas. Não requer parâmetros na requisição.  \n\n### Resposta\n\n- **Status Code**: 200 OK\n    \n- **Content-Type**: application/json\n    \n- **Response Body**: Um array de objetos de tarefa, em que cada objeto contém as seguintes propriedades:  \n    \n    - `id`: (integer) identificador único da tarefa.\n        \n    - `nome`: (string) nome da tarefa.\n        \n    - `dataEntrega`: (string) data de entrega da tarefa.\n        \n    - `responsavel`: (string) pessoa responsável pela tarefa.\n        \n\n### Notas\n\n- A resposta retornará um array, que pode estar vazio se não houver tarefas disponíveis.\n    \n- Certifique-se de que o servidor esteja em execução e acessível na URL especificada para receber uma resposta válida."
+			},
+			"response": []
+		}
+	]
+}
